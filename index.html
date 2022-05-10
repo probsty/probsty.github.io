@@ -39,7 +39,7 @@
             console.log('Send JWT to parent: ' + jwt); 
             var wn = document.getElementById('WebResource_sapfiori').contentWindow;
             wn.postMessage("wam_jwt", "*")         
-            //parent.postMessage("wam_jwt: " + jwt, "*")
+            //parent.postMessage("wam_jwt: " + jwt, "https://pax-crm-dev.crm4.dynamics.com")
         }
     </script>
 </html>
