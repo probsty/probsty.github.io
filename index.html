@@ -1,9 +1,9 @@
 <html>
     <script>
-        const wamUrl = 'https://apsertst.pax.ch/oidcmedium/oidc';
-        const client_id = 'archiv-b001-a9f0-995faef2b587';
-        const scope = 'openid profile inacta email'
-        const jwtUrl = 'https://port.pax.ch:1443/oidc-provider/userinfo'
+        const wamUrl = 'https://authportdev.pax.ch/oidcmedium/oidc';
+        const client_id = '6bd8da9d-abd3-445d-a216-716bcf3e4c58';
+        const scope = 'openid profile groups email'
+        const jwtUrl = 'https://portdev.pax.ch:1443/oidc-provider/userinfo'
         const redirect_uri =  window.origin + ''; // Hier den relativen Pfad Anhängen falls nötig oder oder window.location verwenden und ?code= ... abschneiden
 
         const urlSearchParams = new URLSearchParams(window.location.search);
@@ -15,7 +15,7 @@
         }
 
         async function getJWT(code) { 
-            const response1 = await fetch("https://apsertst.pax.ch/oidcmedium/oidc/token", {
+            const response1 = await fetch(`${wamUrl}/token`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: new URLSearchParams({
@@ -36,11 +36,10 @@
                 body: null
             });
             const jwt = await response2.text();
-            console.log('Hier ist das JWT aus dem Session Storage: ' + jwt);
-            sessionStorage.setItem('wam_jwt', jwt)
+            console.log('Send JWT to parent: ' + jwt); 
             var wn = document.getElementById('WebResource_sapfiori').contentWindow;
-            wn.postMessage("wam_jwt", "*")
-            //parent.postMessage("wam_jwt", "*")
+            wn.postMessage("wam_jwt", "*")         
+            //parent.postMessage("wam_jwt: " + jwt, "*")
         }
     </script>
 </html>
