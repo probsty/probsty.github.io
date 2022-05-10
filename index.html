@@ -38,7 +38,9 @@
             const jwt = await response2.text();
             console.log('Hier ist das JWT aus dem Session Storage: ' + jwt);
             sessionStorage.setItem('wam_jwt', jwt)
-            parent.postMessage("wam_jwt", "*")
+            var wn = document.getElementById('WebResource_sapfiori').contentWindow;
+            wn.postMessage("wam_jwt", "*")
+            //parent.postMessage("wam_jwt", "*")
         }
     </script>
 </html>
