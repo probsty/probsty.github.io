@@ -1,0 +1,15 @@
+<html>
+    <body>
+        <h1>Demo</h1>
+        <iframe  width="0" height="0" src="/index.html" sandbox="allow-scripts allow-same-origin"></iframe>
+        <script>
+            window.addEventListener("message", (event) => {
+                const message = event.data;
+                if (message.startsWith('wam_jwt')) {
+                    const jwt = sessionStorage.getItem('wam_jwt');
+                    console.log('Hier ist das JWT aus dem Session Storage: ' + jwt);
+                }
+            }, false);
+        </script> 
+    </body>
+</html>
