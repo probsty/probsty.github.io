@@ -37,9 +37,12 @@
             });
             const jwt = await response2.text();
             console.log('Send JWT to parent: ' + jwt);
-            console.log("test yann");
+            console.log("test yann 2");
+            console.log("windows.frames: ", windows.frames);
+            console.log("window.top: ", windows.top);
             var wn = document.getElementById('WebResource_sapfiori').contentWindow;
-            wn.postMessage("wam_jwt", "https://pax-crm-dev.crm4.dynamics.com")         
+            wn.postMessage("wam_jwt", "https://pax-crm-dev.crm4.dynamics.com");       
+            window.top.postMessage("wam_jwt", "https://pax-crm-dev.crm4.dynamics.com");  
             //parent.postMessage("wam_jwt: " + jwt, "https://pax-crm-dev.crm4.dynamics.com")
         }
     </script>
